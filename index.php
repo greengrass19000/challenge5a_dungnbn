@@ -23,13 +23,13 @@
 
                             <div class="form-outline mb-4">
                                 <label class="form-label" for="form3Example3">Tài khoản</label>
-                                <input type="u" id="form3Example3" class="form-control form-control-lg"
+                                <input type="text" name="u" class="form-control form-control-lg"
                                        placeholder="username" />
                             </div>
 
                             <div class="form-outline mb-3">
                                 <label class="form-label" for="form3Example4">Mật khẩu</label>
-                                <input type="password" id="form3Example4" class="form-control form-control-lg"
+                                <input type="password" name="p" class="form-control form-control-lg"
                                        placeholder="*********" />
                             </div>
 

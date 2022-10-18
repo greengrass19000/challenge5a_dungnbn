@@ -10,9 +10,8 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
-
 $uu = $_POST['u'];
-echo "$uu";
+$pp = $_POST['p'];
 $sql = "SELECT id, r FROM acc WHERE un='{$uu}' AND pw='{$pp}'";
 $result = $conn->query($sql);
 
@@ -21,8 +20,7 @@ if ($result->num_rows > 0) {
     echo $row["id"];
 //    echo "<tr><td>".$row["id"]."</td><td>".$row["firstname"]." ".$row["lastname"]."</td></tr>";
 } else {
-    echo "$uu";
-    echo "$pp";
+    echo "Account not found";
 }
 $conn->close();
 ?>
