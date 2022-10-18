@@ -11,11 +11,8 @@ if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
 
-/* @var $_POST type */
-$uu = filter_input(INPUT_POST, 'u');
-$pp = filter_input(INPUT_POST, 'p');
-echo $uu;
-echo $pp;
+$uu = $_POST['u'];
+echo "$uu";
 $sql = "SELECT id, r FROM acc WHERE un='{$uu}' AND pw='{$pp}'";
 $result = $conn->query($sql);
 
