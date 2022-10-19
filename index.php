@@ -18,7 +18,8 @@
     if (isset($_SESSION['u'])) {
         echo '<script language="javascript">window.location="user-info.php"</script>';
     } else {
-        echo '<script language="javascript">window.location="portal.php"</script>';
+        echo "failed";
+        echo '<script language="javascript">window.location="login.php"</script>';
     }
 ?>
 </body>

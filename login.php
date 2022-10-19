@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -52,26 +54,19 @@
                 </div>
             </div>
             <?php
+            require 'db.php';
             if (isset($_POST['log'])) {
-                $servername = "localhost";
-                $username = "root";
-                $password = "";
-                $dbname = "w";
-
-                // Create connection
-                $conn = new mysqli($servername, $username, $password, $dbname);
-                // Check connection
-                if ($conn->connect_error) {
-                    die("Connection failed: " . $conn->connect_error);
-                }
-                $sql = "SELECT id, r FROM acc WHERE un='{$_POST['u']}' AND pw='{$_POST['p']}'";
+                mysqli_set_charset($conn, 'UTF8');
+                include_once('db.php');
+                $sql = "SELECT id, role FROM acc WHERE un='{$_POST['u']}' AND pw='{$_POST['p']}'";
+//                echo "$sql";
                 $result = $conn->query($sql);
-
+                    
                 if ($result->num_rows > 0) {
                     $row = $result->fetch_assoc();
                     session_start();
                     $_SESSION['u'] = $_POST['u'];
-                    $_SESSION['role'] = $row['r'];
+                    $_SESSION['role'] = $row['role'];
                     $_SESSION['id'] = $row['id'];
                     //echo '<script language="javascript">alert("Login success"); window.location="index.php"</script>';
                     header("location:index.php");
