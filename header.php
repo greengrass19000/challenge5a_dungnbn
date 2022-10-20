@@ -56,12 +56,6 @@
             </ul>
         </div>
         <div class="collapse navbar-collapse col-4" ></div>
-<!--        <div class="col-2">
-            <form >
-                <input class="row form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success row" type="submit">Search</button>
-            </form>
-        </div>-->
         <div class="col-2"><a class="nav-link" href="logout.php">Đăng xuất</a>
         </div>
     </nav>

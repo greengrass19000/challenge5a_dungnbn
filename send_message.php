@@ -27,7 +27,7 @@
             echo '<script language="javascript">alert("Some error occured, no change was made!"); window.location="member.php"</script>';   
         }
         //sql update 
-        $sql_store_message = "INSERT INTO messages (content, idrec, idsend)
+        $sql_store_message = "INSERT INTO mess (content, idrec, idsend)
         VALUES ('$message_send', '$recipient_id', '$sender_id')";
         if($conn->query($sql_store_message)) {
             echo '<script language="javascript"> 

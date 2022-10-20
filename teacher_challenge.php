@@ -15,31 +15,26 @@
 	include("db.php");
     date_default_timezone_set('Asia/Ho_Chi_Minh');
     $challenge_date = date('l jS F Y h:i:s A');
-                        //Sunday 10th April 2022 12:25:19 AM
     if(isset($_POST["submit"])) {
         $title = $_POST['title'];
         $goiy = $_POST['goiy'];
         $challenge_dir = "uploads/challenge/";
         $challenge_file = $challenge_dir . basename($_FILES["challenge"]["name"]);
         $uploadOk = 1;
-        $challenge_type = strtolower(pathinfo($challenge_file,PATHINFO_EXTENSION)); // type of challenge
+        $challenge_type = strtolower(pathinfo($challenge_file,PATHINFO_EXTENSION));
     
-        // Check if file already exists
         if (file_exists($challenge_file)) {
             echo '<script language="javascript"> alert("Sorry, file already exists.") </script>';
             $uploadOk = 0;
         }
     
-        // Allow certain file formats
         if($challenge_type != "txt") {
             echo '<script language="javascript"> alert("Sorry, only .txt files are allowed.") </script>';
             $uploadOk = 0;
         }
 
-        // Check if $uploadOk is set to 0 by an error
         if ($uploadOk == 0) {
             echo '<script language="javascript"> alert("Sorry, there was an error uploading your file (0x2)") </script>';
-            // if everything is ok, try to upload file
         } else {
             if (move_uploaded_file($_FILES["challenge"]["tmp_name"], $challenge_file)) {
                 $sql_upload_challenge = "INSERT INTO challenges (teacherid, title, files, goiy, createdAt) VALUES ($teacherId, '$title', '$challenge_file', '$goiy','$challenge_date')";

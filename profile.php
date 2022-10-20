@@ -39,32 +39,32 @@
             if (!$self) {                       //user can not delete their account
                 if ($role === 'teacher') {      //user must be teacher  
 
-                    $sql_get_user_file = "SELECT * FROM assignments WHERE author=$requestid";
+                    $sql_get_user_file = "SELECT * FROM task WHERE author=$requestid";
                     $result_get_user_file = $conn->query($sql_get_user_file);
                     while ($fetched_row = mysqli_fetch_array($result_get_user_file)) {
                         $file = $fetched_row['files'];
                         unlink($file);
                     }
 
-                    $sql_get_user_file = "SELECT * FROM challenges WHERE teacherid=$requestid";
+                    $sql_get_user_file = "SELECT * FROM quiz WHERE teacherid=$requestid";
                     $result_get_user_file = $conn->query($sql_get_user_file);
                     while ($fetched_row = mysqli_fetch_array($result_get_user_file)) {
                         $file = $fetched_row['files'];
                         unlink($file);
                     }
 
-                    $sql_get_user_file = "SELECT * FROM submits WHERE studentid=$requestid";
+                    $sql_get_user_file = "SELECT * FROM sub WHERE studentid=$requestid";
                     $result_get_user_file = $conn->query($sql_get_user_file);
                     while ($fetched_row = mysqli_fetch_array($result_get_user_file)) {
                         $file = $fetched_row['link'];
                         unlink($file);
                     }
                     
-                    $sql_get_user_challenge = "SELECT * FROM challenges WHERE teacherid=$requestid";
-                    $sql_get_user_submit = "SELECT * FROM submits WHERE studentid=$requestid";
+                    $sql_get_user_challenge = "SELECT * FROM quiz WHERE teacherid=$requestid";
+                    $sql_get_user_submit = "SELECT * FROM sub WHERE studentid=$requestid";
 
-                    $sql_delete_user = "DELETE FROM users WHERE id=$requestid";
-                    $sql_delete_user_message = "DELETE FROM messages WHERE idsend=$requestid OR idrec=$requestid";
+                    $sql_delete_user = "DELETE FROM acc WHERE id=$requestid";
+                    $sql_delete_user_message = "DELETE FROM mess WHERE idsend=$requestid OR idrec=$requestid";
                     $sql_delete_user_assignment = "DELETE FROM assignments WHERE teacherId=$requestid";
                     $sql_delete_user_challenge = "DELETE FROM challenges WHERE teacherid=$requestid";
                     $sql_delete_user_submit = "DELETE FROM submits WHERE studentid=$requestid";
@@ -100,22 +100,6 @@
     <?php include("header.php") ?>
     <div class="container col-md-10 mx-auto">
         <h1>Profile</h1>
-        <?php
-            if (isset($_POST['change_avatar'])) {
-                echo '<script language="javascript">window.location="upload_image.php"</script>';
-            }
-
-            $sql = "SELECT * FROM acc WHERE id = $requestid";
-            $result = $conn->query($sql);
-            $row = mysqli_fetch_array($result);
-
-//            echo '<img height="280" width="280" src="http://localhost/challenge5a/'.$row['avatar'].'" /><br>
-//                    <h4>Profile image </h4>';
-
-//            if ($approved === true) {
-//                echo '<form action="profile.php" method="post"><input type="submit" name="change_avatar" value="Change avatar"></form>';
-//            }
-        ?>
         <div class="col-md-6 mx-auto">
             <table class="table table-bordered table-striped">
                 <tr>
@@ -153,10 +137,10 @@
     <?php
         //get message
         if ($self) {
-            $sql_get_message = "SELECT * FROM messages WHERE idrec = $id";
+            $sql_get_message = "SELECT * FROM mess WHERE idrec = $id";
         }
         else {
-            $sql_get_message = "SELECT * FROM messages WHERE idrec = $requestid AND idsend = $id";
+            $sql_get_message = "SELECT * FROM mess WHERE idrec = $requestid AND idsend = $id";
         }
         $result_get_message = $conn->query($sql_get_message);
     ?>

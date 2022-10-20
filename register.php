@@ -32,16 +32,13 @@
 
     require("db.php");
 
-// Dùng isset để kiểm tra Form
 if(isset($_POST['dangky'])) {
-    $username = $_POST['username'];
-    $password = $_POST['password'];
-    $hoten = $_POST['hoten'];
-    $email = $_POST['email'];
-    $phone = $_POST['phone'];
-    $role = "student";
+    $username = $_POST['u'];
+    $password = $_POST['p'];
+    $hoten = $_POST['n'];
+    $role = "0";
 
-    $sql = "INSERT INTO users (username, password, hoten, email, phone, role) VALUES ('$username','$password','$hoten','$email', $phone,'$role')";
+    $sql = "INSERT INTO users (username, password, hoten, email, phone, role) VALUES ('$username','$password','$hoten','$role')";
     if(mysqli_query($conn, $sql)) {
     echo '<script language="javascript">alert("Register successed!"); window.location="login.php"</script>'; }
 }

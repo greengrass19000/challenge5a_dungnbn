@@ -3,10 +3,9 @@ if (!isset($_SESSION)) {
     session_start();
 }
 if (!isset($_SESSION['u']) || !isset($_SESSION['id']) || !isset($_SESSION['role'])) {
-    echo '<script language="javascript">alert("You need login first!"); window.location="login.php"</script>';
+   echo '<script language="javascript">alert("You need login first!"); window.location="login.php"</script>';
 } else {
     $u = $_SESSION['u'];
-//    $id = g ['id'];
     $id = $_SESSION['id'];
     $role = $_SESSION['role'];
 }

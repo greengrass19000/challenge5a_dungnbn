@@ -26,7 +26,7 @@
 
     if (isset($_GET['action'])) {
         if ($_GET['action'] === 'delete') {
-            $sql_delete_message = "DELETE FROM messages WHERE id=$messageid";
+            $sql_delete_message = "DELETE FROM mess WHERE id=$messageid";
             if ($conn->query($sql_delete_message)) {
                 echo '<script type="text/javascript">alert("Message deleted! You will be send back to previous page.");</script>';
             }
@@ -40,7 +40,7 @@
     else {
         if (isset($_POST['edit'])) {
             $message_content = $_POST['message_content'];
-            $sql_edit_message = "UPDATE messages
+            $sql_edit_message = "UPDATE mess
             SET content = '$message_content'
             WHERE id=$messageid";
     
@@ -54,7 +54,7 @@
         }
     
         //get targeted message content to display on text box
-        $sql_current_message = "SELECT content FROM messages WHERE id = $messageid";
+        $sql_current_message = "SELECT content FROM mess WHERE id = $messageid";
         $result = $conn->query($sql_current_message);
         $row = mysqli_fetch_array($result);
         if (mysqli_num_rows($result) === 0) {
@@ -72,13 +72,13 @@
                 margin-top: 100px;
             }
         </style>
-        <title>Edit Messages</title>
+        <title>Tin nhắn</title>
     </head>
     <body>
     <?php include("header.php") ?>
         <div class="container">
             <form action="edit_message.php?id=<?php echo $messageid; ?>" method="post">
-            Edit your message here:<br>
+            Nhập tin nhắn tại đây<br>
             <textarea type="text" name="message_content" rows="9" cols="70"><?php echo $row['content']; ?></textarea>
             <br>
             <input type="submit" name="edit" value="Edit">

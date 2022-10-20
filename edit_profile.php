@@ -2,7 +2,7 @@
 	if(!isset($_SESSION)){
         session_start();
     }
-	if (!isset($_SESSION['username'])||!isset($_SESSION['id'])||!isset($_SESSION['role'])) {
+	if (!isset($_SESSION['u'])||!isset($_SESSION['id'])||!isset($_SESSION['role'])) {
 		echo '<script language="javascript">alert("You need login first!"); window.location="login.php"</script>';
 	} else {
         $username_avatar = $_SESSION['username'];
@@ -94,7 +94,7 @@
 			<tr>
 				<td>Username:</td>
 				<?php
-					if ($role === "teacher") {
+					if ($role === "1") {
 						echo '<td><input type="text" name="username" required value="'.$row['username'].'"></td>';
 					} else {
 						echo '<td><input type="text" name="username" required value="'.$row['username'].'" disabled=""></td>';
@@ -108,7 +108,7 @@
 			</tr>
 				<td>Họ và tên:</td>
 				<?php
-					if ($role === "teacher") {
+					if ($role === "1") {
 						echo '<td><input type="text" name="fullname" required value="'.$row['hoten'].'"></td>';
 					} else {
 						echo '<td><input type="text" name="fullname" required value="'.$row['hoten'].'" disabled=""></td>';
