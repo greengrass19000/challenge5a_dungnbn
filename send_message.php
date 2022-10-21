@@ -3,10 +3,10 @@
     if(!isset($_SESSION)){
         session_start();
     }
-	if (!isset($_SESSION['username'])||!isset($_SESSION['id'])||!isset($_SESSION['role'])) {
+	if (!isset($_SESSION['u'])||!isset($_SESSION['id'])||!isset($_SESSION['role'])) {
 		echo '<script language="javascript">alert("You need login first!"); window.location="login.php"</script>';
 	} else {
-        $username = $_SESSION['username'];
+        $username = $_SESSION['u'];
         $id = $_SESSION['id'];
         $role  = $_SESSION['role'];
     }
@@ -24,10 +24,10 @@
     if (isset($_POST['submit'])) {
         $message_send = $_POST['message_send'];
         if (!isset($recipient_id) || !isset($sender_id)) {
-            echo '<script language="javascript">alert("Some error occured, no change was made!"); window.location="member.php"</script>';   
+            echo '<script language="javascript">alert("Some error occured, no change was made!"); window.location="profile.php"</script>';   
         }
         //sql update 
-        $sql_store_message = "INSERT INTO mess (content, idrec, idsend)
+        $sql_store_message = "INSERT INTO mess (content, receiver, sender)
         VALUES ('$message_send', '$recipient_id', '$sender_id')";
         if($conn->query($sql_store_message)) {
             echo '<script language="javascript"> 
@@ -47,12 +47,12 @@
     if (typeof success !== 'undefined') {
         if (success === 1) {
             alert("Success!");
-            var locationn = "member.php?id=";
+            var locationn = "profile.php?id=";
             window.location = locationn.concat(recipient_id);  
         }
         else {
             alert("Some error occured!");
-            var locationn = "member.php?id=";
+            var locationn = "profile.php?id=";
             window.location = locationn.concat(recipient_id);  
         }
     }

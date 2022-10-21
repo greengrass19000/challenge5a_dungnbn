@@ -2,7 +2,7 @@
     if(!isset($_SESSION)){
         session_start();
     }
-    if (!isset($_SESSION['username'])) {
+    if (!isset($_SESSION['u'])) {
         echo '<script language="javascript">alert("You need login first!"); window.location="login.php"</script>';
     } else {
         $username_student = $_SESSION['username'];

@@ -8,12 +8,12 @@
 
 <?php
 
-	if (!isset($_SESSION['username'])||!isset($_SESSION['id'])||!isset($_SESSION['role'])) {
+	if (!isset($_SESSION['u'])||!isset($_SESSION['id'])||!isset($_SESSION['role'])) {
 		echo '<script language="javascript">alert("You need login first!"); window.location="login.php"</script>';
 	} 
     else {
         //data of current user
-        $username = $_SESSION['username'];
+        $username = $_SESSION['u'];
         $id = $_SESSION['id'];
         $role  = $_SESSION['role'];
     }

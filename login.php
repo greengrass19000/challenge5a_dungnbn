@@ -59,7 +59,6 @@
                 mysqli_set_charset($conn, 'UTF8');
                 include_once('db.php');
                 $sql = "SELECT id, role FROM acc WHERE un='{$_POST['u']}' AND pw='{$_POST['p']}'";
-//                echo "$sql";
                 $result = $conn->query($sql);
                     
                 if ($result->num_rows > 0) {
@@ -68,10 +67,7 @@
                     $_SESSION['u'] = $_POST['u'];
                     $_SESSION['role'] = $row['role'];
                     $_SESSION['id'] = $row['id'];
-                    //echo '<script language="javascript">alert("Login success"); window.location="index.php"</script>';
                     header("location:index.php");
-//                    echo $row["id"];
-                    //    echo "<tr><td>".$row["id"]."</td><td>".$row["firstname"]." ".$row["lastname"]."</td></tr>";
                 } else {
                     echo "not suitable input";
                 }
