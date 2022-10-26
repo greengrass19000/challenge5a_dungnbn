@@ -27,14 +27,13 @@
 <?php
 // Dùng isset để kiểm tra Form
 if(isset($_POST['adduser'])) {
-    $username = $_POST['u'];
-    $password = $_POST['p'];
-    $hoten = $_POST['n'];
-    $role = "0";
+    $username = $_POST['un'];
+    $password = $_POST['pw'];
+    $hoten = $_POST['name'];
 
-    $sql = "INSERT INTO users (un, pw, name, role) VALUES ('$u','$p','$n','$role')";
+    $sql = "INSERT INTO acc (id, un, pw, name, role) VALUES (NULL, '$username','$password','$hoten', '0')";
+    console.log("$sql");
     mysqli_query($conn, $sql);
-    echo '<script language="javascript">alert("Add user successed!"); window.location="index.php"</script>';
-
+    echo '<script language="javascript">alert("Add user successed!"); window.location="student.php"</script>';
 }
 ?>

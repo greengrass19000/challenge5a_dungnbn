@@ -35,7 +35,7 @@ require("redirect.php");
 if (isset($_GET['action'])) {
     if ($_GET['action'] === 'delete') {
         if (!$self) {                       //user can not delete their account
-            if ($role === 'teacher') {      //user must be teacher  
+            if ($role === '1') {      //user must be teacher  
                 $sql_get_user_file = "SELECT * FROM task WHERE author=$requestid";
                 $result_get_user_file = $conn->query($sql_get_user_file);
                 while ($fetched_row = mysqli_fetch_array($result_get_user_file)) {
@@ -84,7 +84,11 @@ if (isset($_GET['action'])) {
 
                 echo '<script language="javascript">alert("User deleted!")</script>';
                 back();
+            } else {
+            echo '<script language="javascript">alert("You do not have the permisson!!")</script>';
             }
+        } else {
+            echo '<script language="javascript">alert("Can not delete your own account!!")</script>';
         }
     }
 }

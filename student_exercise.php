@@ -5,13 +5,13 @@
 	if (!isset($_SESSION['u']) || !isset($_SESSION['id'])) {
 		echo '<script language="javascript">alert("You need login first!"); window.location="login.php"</script>';
 	} else {
-        $username_student = $_SESSION['username'];
+        $username_student = $_SESSION['u'];
         $userid = $_SESSION['id'];
     }
 
     include("db.php");
 
-    $sql_get_assignments = "SELECT * FROM assignments";
+    $sql_get_assignments = "SELECT * FROM task";
     $get_assignment_result = $conn->query($sql_get_assignments);
 ?>
 
@@ -28,24 +28,24 @@
         <table class="table table-bordered table-hover">
             <thead class="thead-light">    
                 <tr>
-                    <th>File exercise</th>
-                    <th>Date create</th>
-                    <th>Your submit</th>
-                    <th>Action</th>
+                    <th>Tên tệp</th>
+                    <th>Ngày tạo</th>
+                    <th>Bài nộp</th>
+                    <th>Hành động</th>
                 </tr>
             </thead>  
             <?php while ($get_assignment_row = mysqli_fetch_array($get_assignment_result)): ?>
                 <tbody >
                     <tr>
                         <td><a href="<?php echo 'https://svtamvt.000webhostapp.com/'.$get_assignment_row['files']; ?>" download><?php echo $get_assignment_row['files']; ?></a></td>
-                        <td><?php echo $get_assignment_row['createdAt']; ?></td>
+                        <td><?php echo $get_assignment_row['time']; ?></td>
                         <?php 
                         $assignmentid =  $get_assignment_row['id'];
-                        $sql_get_submit = "SELECT * FROM submits WHERE studentid = $userid AND assignmentid = $assignmentid";
+                        $sql_get_submit = "SELECT * FROM sub WHERE author = $userid AND assignmentid = $assignmentid";
                         $get_submit_result = $conn->query($sql_get_submit);
                         if (mysqli_num_rows($get_submit_result)===1) {
                             $submit_row = mysqli_fetch_array($get_submit_result);
-                            $submit_title = $submit_row['title'];
+                            $submit_title = $submit_row['name'];
                             $submit_link = $submit_row['link'];
                             echo '<td><a href="http://svtamvt.000webhostapp.com/'.$submit_link.'">'.$submit_title.'</a></td>';
                         }

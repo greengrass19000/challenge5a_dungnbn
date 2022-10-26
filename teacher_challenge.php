@@ -59,14 +59,14 @@
 <body>
 <?php include_once("header.php") ?>
     <div class="col-md-10 mx-auto " style="margin-top:10%;">
-        <h1>List challenges</h1>
+        <h1>Danh sách câu đố</h1>
         <table class="table table-bordered table-hover">
             <thead class="thead-light">
                 <tr>
-                    <th>Tittle challenge</th>
+                    <th>Câu đố</th>
                     <th>Gợi ý</th>
-                    <th>File challenge</th>
-                    <th>Date created</th>
+                    <th>Tệp tin</th>
+                    <th>Ngày tạo</th>
                 </tr>
             </thead>
             <?php while ($row_get_challenge = mysqli_fetch_array($result_get_challenge)): ?>
@@ -81,16 +81,16 @@
             <?php endwhile; ?>
         </table>
 
-        <h1>Upload new challenge</h1>
+        <h1>Tạo câu đố mới</h1>
         <form action="teacher_challenge.php" method="post" enctype="multipart/form-data">
-            Tên challenge:<br>
+            Tên câu đố:<br>
             <input type="text" name="title" required> <br>
-            Gợi ý cho challenge:<br>
+            Gợi ý cho câu đố:<br>
             <textarea type="text" name="goiy" rows="5" cols="80"></textarea>
             <br>
-            <p>Select file to upload:</p>
+            <p>Chọn tệp để tải lên:</p>
             <input type="file" name="challenge">
-            <input type="submit" name="submit" value="Submit">
+            <input type="submit" name="submit" value="Upload">
         </form>
     </div>
 </body>
