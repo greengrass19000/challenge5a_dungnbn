@@ -37,7 +37,7 @@
             echo '<script language="javascript"> alert("Sorry, there was an error uploading your file (0x2)") </script>';
         } else {
             if (move_uploaded_file($_FILES["challenge"]["tmp_name"], $challenge_file)) {
-                $sql_upload_challenge = "INSERT INTO challenges (teacherid, title, files, goiy, createdAt) VALUES ($teacherId, '$title', '$challenge_file', '$goiy','$challenge_date')";
+                $sql_upload_challenge = "INSERT INTO quiz (author, name, file, hint, time) VALUES ($teacherId, '$title', '$challenge_file', '$goiy','$challenge_date')";
                 if($conn->query($sql_upload_challenge)) {
                     echo '<script language="javascript"> alert("Upload challenge success!") </script>';
                 }              
@@ -72,10 +72,10 @@
             <?php while ($row_get_challenge = mysqli_fetch_array($result_get_challenge)): ?>
                 <tbody >
                     <tr>
-                        <td><?php echo $row_get_challenge['title']; ?></td>
-                        <td><?php echo $row_get_challenge['goiy']; ?></td>
-                        <td><a href="<?php echo 'http://localhost/challenge5a/'.$row_get_challenge['files']; ?>" download><?php echo $row_get_challenge['files']; ?></a></td>
-                        <td><?php echo $row_get_challenge['createdAt']; ?></td>
+                        <td><?php echo $row_get_challenge['name']; ?></td>
+                        <td><?php echo $row_get_challenge['hint']; ?></td>
+                        <td><a href="<?php echo 'http://localhost/p/'.$row_get_challenge['file']; ?>" download><?php echo $row_get_challenge['file']; ?></a></td>
+                        <td><?php echo $row_get_challenge['time']; ?></td>
                     </tr>
                 </tbody>
             <?php endwhile; ?>

@@ -37,7 +37,7 @@
             <?php while ($get_assignment_row = mysqli_fetch_array($get_assignment_result)): ?>
                 <tbody >
                     <tr>
-                        <td><a href="<?php echo 'https://svtamvt.000webhostapp.com/'.$get_assignment_row['files']; ?>" download><?php echo $get_assignment_row['files']; ?></a></td>
+                        <td><a href="<?php echo 'https://dungnbn.000webhostapp.com/'.$get_assignment_row['file']; ?>" download><?php echo $get_assignment_row['file']; ?></a></td>
                         <td><?php echo $get_assignment_row['time']; ?></td>
                         <?php 
                         $assignmentid =  $get_assignment_row['id'];
@@ -47,7 +47,7 @@
                             $submit_row = mysqli_fetch_array($get_submit_result);
                             $submit_title = $submit_row['name'];
                             $submit_link = $submit_row['link'];
-                            echo '<td><a href="http://svtamvt.000webhostapp.com/'.$submit_link.'">'.$submit_title.'</a></td>';
+                            echo '<td><a href="http://dungnbn.000webhostapp.com/'.$submit_link.'">'.$submit_title.'</a></td>';
                         }
                         else {
                             echo "<td></td>";
