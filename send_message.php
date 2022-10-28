@@ -53,7 +53,7 @@
         else {
             alert("Some error occured!");
             var locationn = "profile.php?id=";
-            window.location = locationn.concat(recipient_id);  
+            window.location = locationn.concat(recipient_id);   
         }
     }
 </script>
