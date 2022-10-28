@@ -69,54 +69,42 @@ $result_get_submit_exercise = $conn->query($sql_get_submit_exercise);
 
 
         <table class="table table-bordered table-hover">
-            <thead class="thead-light">
-                <tr>
-                    <th>Tên bài</th>
-                    <th>Tệp bài</th>
-                    <th>Ngày tạo</th>
-                </tr>
-            </thead>
-
             <tbody >
                 <?php
                 while ($row_get_submit_exercise = mysqli_fetch_array($result_get_submit_exercise)):
                     $assignmentid = $row_get_submit_exercise['id'];
                     ?>
                     <tr>
-                        <td><?php echo $row_get_submit_exercise['name']; ?></td>
-                        <!--<td><a href="<?php echo 'https://dungnbn.000webhostapp.com/' . $row_get_submit_exercise['file']; ?>" download><?php echo $row_get_submit_exercise['file']; ?></a></td>-->
-                        <td><?php echo $row_get_submit_exercise['file']; ?></td>
-                        <td><?php echo $row_get_submit_exercise['time']; ?></td>
-
-
-                    </tr>  
-                <?php endwhile; ?>
-            <br>
-            </tbody>
-
-        </table>
-        <table class="table table-bordered table-hover" >
-            <thead class="thead-light">
-                <tr> 
-                    <th>Tên học sinh</th>
-                    <th>Đường dẫn tệp</th>
-                    <th>Thời gian nộp</th>
-                <tr>
-            </thead>     
-            <tbody>
-                <?php
-                $sql_get_student_submit = "SELECT * FROM sub JOIN acc ON sub.author=acc.id AND sub.id=" . $assignmentid . "";
-                $result_get_student_submit = $conn->query($sql_get_student_submit);
-                while ($row_get_student_submit = mysqli_fetch_array($result_get_student_submit)):
-                    ?>
-                    <tr>
-                        <td> <?php echo $row_get_student_submit['un']; ?> </td>
-                        <td><a href="<?php echo 'https://dungnbn.000webhostapp.com/' . $row_get_student_submit['file']; ?>" download><?php echo $row_get_student_submit['file']; ?></a></td>
-                        <td> <?php echo $row_get_student_submit['time']; ?> </td>
+                        <th>Tên bài</th>
+                        <th>Tệp bài</th>
+                        <th>Ngày tạo</th>
                     </tr>
-                <?php endwhile; ?>
+                    <tr>
+                        <td><?php echo $row_get_submit_exercise['name']; ?></td>
+                        <td><a href="<?php echo 'https://dungnbn.000webhostapp.com/' . $row_get_submit_exercise['file']; ?>" download><?php echo $row_get_submit_exercise['file']; ?></a></td>
+                        <td><?php echo $row_get_submit_exercise['time']; ?></td>
+                    </tr>  
+                        <tr> 
+                            <th>Tên học sinh</th>
+                            <th>Đường dẫn tệp</th>
+                            <th>Thời gian nộp</th>
+                        <tr>
+                        <?php
+                        $sql_get_student_submit = "SELECT * FROM sub JOIN acc ON sub.author=acc.id AND sub.assignmentid=" . $assignmentid . "";
+                        $result_get_student_submit = $conn->query($sql_get_student_submit);
+                        while ($row_get_student_submit = mysqli_fetch_array($result_get_student_submit)):
+                            ?>
+                            <tr>
+                                <td> <?php echo $row_get_student_submit['un']; ?> </td>
+                                <td><a href ="<?php echo 'https://dungnbn.000webhostapp.com/' . $row_get_student_submit['file']; ?>" download><?php echo $row_get_student_submit['file']; ?></a></td>
+                                <td> <?php echo $row_get_student_submit['time']; ?> </td>
+                            </tr>
+                        <?php endwhile; ?>
+                <br>
+            <?php endwhile; ?>
             </tbody>
         </table>
+
         <h1>Đăng bài tập mới</h1>
         <form action="teacher_exercise.php" method="post" enctype="multipart/form-data">
             <p>Chọn tệp để tải lên:</p>

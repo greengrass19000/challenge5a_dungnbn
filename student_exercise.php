@@ -45,8 +45,8 @@
                         $get_submit_result = $conn->query($sql_get_submit);
                         if (mysqli_num_rows($get_submit_result)===1) {
                             $submit_row = mysqli_fetch_array($get_submit_result);
-                            $submit_title = $submit_row['name'];
-                            $submit_link = $submit_row['link'];
+                            $submit_title = $submit_row['title'];
+                            $submit_link = $submit_row['file'];
                             echo '<td><a href="http://dungnbn.000webhostapp.com/'.$submit_link.'">'.$submit_title.'</a></td>';
                         }
                         else {

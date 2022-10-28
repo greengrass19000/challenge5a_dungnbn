@@ -45,17 +45,17 @@
                 date_default_timezone_set('Asia/Ho_Chi_Minh');
                 $exercise_date = date('l jS F Y h:i:s A');
 
-                $sql_get_submit = "SELECT * FROM submits WHERE studentid = $userid AND assignmentid = $assignmentid";
+                $sql_get_submit = "SELECT * FROM sub WHERE author = $userid AND assignmentid = $assignmentid";
                 $get_submit_result = $conn->query($sql_get_submit);
                 if (mysqli_num_rows($get_submit_result)===1) {
                     //Already exist record, update it instead
-                    $sql_submit_exercise_update = "UPDATE submits SET studentid=$userid, assignmentid=$assignmentid, title='$exercise_submit_name', link='$exercise_submit_location', updatedAt='$exercise_date' WHERE studentid = $userid AND assignmentid = $assignmentid";
+                    $sql_submit_exercise_update = "UPDATE sub SET author=$userid, assignmentid=$assignmentid, title='$exercise_submit_name', file='$exercise_submit_location', time='$exercise_date' WHERE author = $userid AND assignmentid = $assignmentid";
                     if ($conn->query($sql_submit_exercise_update)) {
                         echo '<script language="javascript"> alert("Submit exercise success!"); window.location="student_exercise.php" </script>';
                     }
                 }
                 else {
-                    $sql_submit_exercise = "INSERT INTO submits (studentid, assignmentid, title, link, updatedAt) VALUES ( $userid, $assignmentid, '$exercise_submit_name', '$exercise_submit_location', '$exercise_date')";
+                    $sql_submit_exercise = "INSERT INTO sub (author, assignmentid, title, file, time) VALUES ( $userid, $assignmentid, '$exercise_submit_name', '$exercise_submit_location', '$exercise_date')";
                     if ($conn->query($sql_submit_exercise)) {
                         echo '<script language="javascript"> alert("Submit exercise success!"); window.location="student_exercise.php" </script>';
                     }
